@@ -1,4 +1,4 @@
-import { EditText } from "react-edit-text"
+import { EditText, EditTextarea } from "react-edit-text"
 import 'react-edit-text/dist/index.css';
 
 
@@ -10,8 +10,8 @@ const Card = (props) => {
                 <div class="flex flex-row items-center">
                     <EditText
                     name="h1"
-                    style={{fontSize:'24pt', margin:'0px', padding:'0px'}}
-                    defaultValue={props.data.heading}
+                    style={{fontSize:'20pt', margin:'2px', padding:'0px', fontWeight:'bold'}}
+                    placeholder={props.data.heading}
                     onSave={(e) => props.cardUpdated("h1", props.idx, e.value)}
                     />
                     <div class="cursor-pointer" onClick={() => props.cardDeleted(props.idx)}>
@@ -20,9 +20,9 @@ const Card = (props) => {
                         </svg>
                     </div>
                 </div>
-                <EditText
+                <EditTextarea
                 name="content"
-                defaultValue={props.data.content}
+                placeholder={props.data.content}
                 onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
                 />
                 <blockquote class="font-mono text-xs whitespace-pre-wrap bg-gray-200">{props.data.codeBlock}</blockquote>
@@ -30,14 +30,13 @@ const Card = (props) => {
             </div>
         </div>
     ) 
-    // {name, value, previousValue}
 }
 
 export const CardList = (props) => {
     return (
         <div>
             {props.cards.map((card, idx) => (
-                <Card idx={idx} key={idx} data={card} cardClicked={props.cardClicked} cardUpdated={props.cardUpdated} cardDeleted={props.cardDeleted}></Card>
+                <Card idx={idx} key={card.cardKey} data={card} cardClicked={props.cardClicked} cardUpdated={props.cardUpdated} cardDeleted={props.cardDeleted}></Card>
             ))}
         </div>
         // <Card data={props.cards[0]}></Card>

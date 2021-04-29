@@ -8,6 +8,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props)
+    this.cardCount = 0
     this.state = {
       startIdx: 0,
       endIdx: 0,
@@ -31,10 +32,12 @@ class App extends React.Component {
         startIdx: this.state.startIdx,
         endIdx: this.state.endIdx,
         codeBlock: this.state.code.substring(this.state.startIdx, this.state.endIdx),
-        heading: "Heading",
-        content: "Content"
+        heading: "# Heading",
+        content: "Content",
+        cardKey: this.cardCount,
       }
       this.setState({cards: [...this.state.cards, card]})
+      this.cardCount += 1
     }
     else {
       console.log('invalid selection')
@@ -64,7 +67,7 @@ class App extends React.Component {
   }
 
   deleteCard = (idx) => {
-    let cards = this.state.cards.slice()
+    const cards = [...this.state.cards]
     cards.splice(idx, 1)
 
     this.setState({cards})

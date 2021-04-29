@@ -1,25 +1,71 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {CodeTextbox} from './components/CodeTextbox'
+import {CardList} from './components/CardList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      startIdx: 0,
+      endIdx: 0,
+      code: null,
+      cards: []
+    }
+  }
+
+  updateTextboxVars = (event) => {
+    const { selectionStart, selectionEnd, value } = event.target;
+    this.setState({
+      // code: value.substring(selectionStart, selectionEnd),
+      code: value,
+      startIdx: selectionStart,
+      endIdx: selectionEnd
+    })
+  }
+
+  addCard = () => {
+    if (this.state.endIdx > this.state.startIdx) {
+      let card = {
+        startIdx: this.state.startIdx,
+        endIdx: this.state.endIdx,
+        codeBlock: this.state.code.substring(this.state.startIdx, this.state.endIdx),
+        heading: "test",
+        content: "content"
+      }
+      this.setState({cards: [...this.state.cards, card]})
+    }
+    else {
+      console.log('invalid selection')
+    }
+  }
+
+  setSelection = (startIdx, endIdx) => {
+    this.setState({
+      startIdx,
+      endIdx
+    })
+  }
+
+  updateCard = (element, idx, value) => {
+    let cards = this.state.cards.slice()
+    cards[idx].heading = value
+    this.setState({cards})
+  }
+
+  render() {
+    return (
+      <div>
+        <CodeTextbox startIdx={this.state.startIdx} endIdx={this.state.endIdx} updateVars={(event) => this.updateTextboxVars(event)}></CodeTextbox>
+        <button onClick={this.addCard}>Add comment</button>
+        <CardList cards={this.state.cards} cardClicked={(startIdx, endIdx) => this.setSelection(startIdx, endIdx)} cardUpdated={(element, idx, value) => this.updateCard(element, idx, value)}></CardList>
+      </div>
+    );
+  }
+
 }
+  
 
 export default App;

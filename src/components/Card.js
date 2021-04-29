@@ -12,7 +12,7 @@ export const Card = (props) => {
           <EditText
             name="h1"
             style={{
-              fontSize: "20pt",
+              fontSize: "16pt",
               margin: "2px",
               padding: "0px",
               fontWeight: "bold",

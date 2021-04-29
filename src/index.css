@@ -7,4 +7,5 @@ pre {
   -moz-tab-size: 2;
   -o-tab-size: 2;
   tab-size: 2;
+  resize: vertical;
 }

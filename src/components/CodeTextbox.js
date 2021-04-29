@@ -12,7 +12,7 @@ export const CodeTextbox = (props) => {
 
     return (
         <div>
-            <textarea ref={textAreaRef}  onMouseUp={(event) => props.updateVars(event)} onChange={(event) => props.updateVars(event)}></textarea>
+            <textarea class="font-mono text-sm w-full bg-gray-100 h-96 m-2 p-2" ref={textAreaRef}  onMouseUp={(event) => props.updateVars(event)} onChange={(event) => props.updateVars(event)}></textarea>
         </div>
     )
 }

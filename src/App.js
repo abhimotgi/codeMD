@@ -51,7 +51,16 @@ class App extends React.Component {
 
   updateCard = (element, idx, value) => {
     let cards = this.state.cards.slice()
-    cards[idx].heading = value
+    switch(element) {
+      case "h1":
+        cards[idx].heading = value
+        break;
+      case "content":
+        cards[idx].content = value
+        break;
+      default:
+        break;
+    }
     this.setState({cards})
   }
 

@@ -5,14 +5,16 @@ import 'react-edit-text/dist/index.css';
 const Card = (props) => {
     return (
         <div onMouseEnter={() => props.cardClicked(props.data.startIdx, props.data.endIdx)}>
-            {/* <h4>{props.data.heading}</h4> */}
             <EditText
-            name="textbox1"
+            name="h1"
             defaultValue={props.data.heading}
             onSave={(e) => props.cardUpdated("h1", props.idx, e.value)}
             />
-            {props.key}
-            <p>{props.data.content}</p>
+            <EditText
+            name="content"
+            defaultValue={props.data.content}
+            onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
+            />
             <blockquote>{props.data.codeBlock}</blockquote>
         </div>
     ) 

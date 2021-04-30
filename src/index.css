@@ -9,3 +9,10 @@ pre {
   tab-size: 2;
   resize: vertical;
 }
+
+::selection {
+  background: #ffb7b7; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #ffb7b7; /* Gecko Browsers */
+}

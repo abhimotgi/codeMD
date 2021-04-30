@@ -9,6 +9,7 @@ const CardMenuButton = (props) => {
   );
 };
 
+// Two states for collapsed and expanded
 const CollapseButton = (props) => {
   return (
     <div class="cursor-pointer" onClick={() => props.collapse(!props.cardOpen)}>
@@ -55,40 +56,6 @@ const CollapseButton = (props) => {
   );
 };
 
-const DeleteButton = (props) => {
-  return (
-    <div
-      class="cursor-pointer"
-      onClick={() => props.cardDeleted(props.idx)}
-    ></div>
-  );
-};
-
-const ViewCodeButton = (props) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-      />
-    </svg>
-  );
-};
-
 export const Card = (props) => {
   const [cardOpen, setCardOpen] = useState(true);
   const [content, setContent] = useState(props.data.content);
@@ -103,6 +70,7 @@ export const Card = (props) => {
     >
       <div>
         <div class="flex justify-between">
+          {/* Eye (scroll to code) */}
           <CardMenuButton
             onClick={() =>
               props.cardClicked(props.data.startIdx, props.data.endIdx)
@@ -111,17 +79,19 @@ export const Card = (props) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
               <path
-                fillRule="evenodd"
-                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                clipRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
           </CardMenuButton>
+          {/* Expand / collapse card */}
           <div
             class="flex flex-grow justify-center cursor-pointer"
             onClick={() => setCardOpen(!cardOpen)}
@@ -131,18 +101,20 @@ export const Card = (props) => {
               cardOpen={cardOpen}
             ></CollapseButton>
           </div>
-
+          {/* Delete card */}
           <CardMenuButton onClick={() => props.cardDeleted(props.idx)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
               <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clipRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           </CardMenuButton>

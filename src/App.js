@@ -12,6 +12,7 @@ class App extends React.Component {
       endIdx: 0,
       code: null,
       cards: [],
+      clickSwitch: false,
     };
   }
 
@@ -48,6 +49,7 @@ class App extends React.Component {
     this.setState({
       startIdx,
       endIdx,
+      clickSwitch: !this.state.clickSwitch,
     });
   };
 
@@ -82,6 +84,7 @@ class App extends React.Component {
               startIdx={this.state.startIdx}
               endIdx={this.state.endIdx}
               updateVars={(event) => this.updateTextboxVars(event)}
+              clickSwitch={this.state.clickSwitch}
             ></CodeTextbox>
           </div>
           <div class="flex flex-row">

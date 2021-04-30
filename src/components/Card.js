@@ -76,9 +76,9 @@ export const Card = (props) => {
   return (
     <div
       class="p-2 bg-gray-100 m-2 hover:shadow-md transition-all"
-      onMouseEnter={() =>
-        props.cardClicked(props.data.startIdx, props.data.endIdx)
-      }
+      // onMouseEnter={() =>
+      //   props.cardClicked(props.data.startIdx, props.data.endIdx)
+      // }
     >
       <div>
         <div
@@ -115,11 +115,13 @@ export const Card = (props) => {
             value={content}
             onChange={(e) => setContent(e.value)}
             onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
-            onClick={() =>
-              props.scrollTextBox(props.data.startIdx, props.data.endIdx)
-            }
           />
-          <blockquote class="font-mono text-xs whitespace-pre-wrap bg-gray-200">
+          <blockquote
+            class="font-mono text-xs whitespace-pre-wrap bg-gray-200 hover:bg-gray-300 cursor-pointer"
+            onClick={() =>
+              props.cardClicked(props.data.startIdx, props.data.endIdx)
+            }
+          >
             {props.data.codeBlock}
           </blockquote>
         </div>

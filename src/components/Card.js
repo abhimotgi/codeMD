@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { EditText, EditTextarea } from "react-edit-text";
 
 export const Card = (props) => {
+  const [cardOpen, setCardOpen] = useState(true);
+  const [content, setContent] = useState("");
+
   return (
-    <div class="p-2 bg-gray-100 m-2 hover:shadow-md">
+    <div class="p-2 bg-gray-100 m-2 hover:shadow-md transition-all duration-1000">
       <div
         onMouseEnter={() =>
           props.cardClicked(props.data.startIdx, props.data.endIdx)
@@ -38,14 +42,20 @@ export const Card = (props) => {
             </svg>
           </div>
         </div>
-        <EditTextarea
-          name="content"
-          placeholder={props.data.content}
-          onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
-        />
-        <blockquote class="font-mono text-xs whitespace-pre-wrap bg-gray-200">
-          {props.data.codeBlock}
-        </blockquote>
+        {cardOpen && (
+          <div class="transition-all">
+            <EditTextarea
+              name="content"
+              placeholder={props.data.content}
+              value={content}
+              onChange={(e) => setContent(e.value)}
+              onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
+            />
+            <blockquote class="font-mono text-xs whitespace-pre-wrap bg-gray-200">
+              {props.data.codeBlock}
+            </blockquote>
+          </div>
+        )}
       </div>
     </div>
   );

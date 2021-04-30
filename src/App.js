@@ -33,8 +33,8 @@ class App extends React.Component {
           this.state.startIdx,
           this.state.endIdx
         ),
-        heading: "# Heading",
-        content: "Content",
+        header: "",
+        content: "",
         cardKey: this.cardCount,
       };
       this.setState({ cards: [...this.state.cards, card] });
@@ -55,7 +55,7 @@ class App extends React.Component {
     let cards = this.state.cards.slice();
     switch (element) {
       case "h1":
-        cards[idx].heading = value;
+        cards[idx].header = value;
         break;
       case "content":
         cards[idx].content = value;

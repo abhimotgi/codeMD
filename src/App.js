@@ -12,6 +12,7 @@ class App extends React.Component {
       endIdx: 0,
       code: null,
       cards: [],
+      clickSwitch: false,
     };
   }
 
@@ -33,8 +34,8 @@ class App extends React.Component {
           this.state.startIdx,
           this.state.endIdx
         ),
-        heading: "# Heading",
-        content: "Content",
+        header: "",
+        content: "",
         cardKey: this.cardCount,
       };
       this.setState({ cards: [...this.state.cards, card] });
@@ -48,6 +49,7 @@ class App extends React.Component {
     this.setState({
       startIdx,
       endIdx,
+      clickSwitch: !this.state.clickSwitch,
     });
   };
 
@@ -55,7 +57,7 @@ class App extends React.Component {
     let cards = this.state.cards.slice();
     switch (element) {
       case "h1":
-        cards[idx].heading = value;
+        cards[idx].header = value;
         break;
       case "content":
         cards[idx].content = value;
@@ -82,6 +84,7 @@ class App extends React.Component {
               startIdx={this.state.startIdx}
               endIdx={this.state.endIdx}
               updateVars={(event) => this.updateTextboxVars(event)}
+              clickSwitch={this.state.clickSwitch}
             ></CodeTextbox>
           </div>
           <div class="flex flex-row">

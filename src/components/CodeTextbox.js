@@ -4,19 +4,25 @@ export const CodeTextbox = (props) => {
 
   useEffect(() => {
     if (textAreaRef !== null) {
+      // scroll to selection
+      textAreaRef.current.selectionStart = textAreaRef.current.selectionEnd =
+        props.startIdx;
+      textAreaRef.current.blur();
       textAreaRef.current.focus();
-      textAreaRef.current.selectionStart = props.startIdx;
       textAreaRef.current.selectionEnd = props.endIdx;
     }
-  });
+  }, [props.startIdx, props.endIdx, props.clickSwitch]);
 
   return (
     <div>
       <textarea
-        class="font-mono text-sm w-full bg-gray-100 h-96 m-2 p-2 focus:bg-gray-200"
+        class="font-mono text-sm w-full bg-gray-100 m-2 p-2  focus:outline-none"
         ref={textAreaRef}
-        onMouseUp={(event) => props.updateVars(event)}
+        rows="30"
+        placeholder="Paste your code..."
+        // onMouseUp={(event) => props.updateVars(event)}
         onChange={(event) => props.updateVars(event)}
+        onSelect={(event) => props.updateVars(event)}
       ></textarea>
     </div>
   );

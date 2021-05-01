@@ -75,6 +75,28 @@ class App extends React.Component {
     this.setState({ cards });
   };
 
+  reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  cardDragged = (result) => {
+    // dropped outside list
+    if (!result.destination) {
+      return;
+    }
+
+    const cards = this.reorder(
+      this.state.cards,
+      result.source.index,
+      result.destination.index
+    );
+    this.setState({ cards });
+  };
+
   render() {
     return (
       <div class="container mx-auto flex flex-row">
@@ -112,6 +134,7 @@ class App extends React.Component {
               this.updateCard(element, idx, value)
             }
             cardDeleted={(idx) => this.deleteCard(idx)}
+            cardDragged={this.cardDragged}
           ></CardList>
         </div>
       </div>

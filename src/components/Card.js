@@ -58,16 +58,11 @@ const CollapseButton = (props) => {
 
 export const Card = (props) => {
   const [cardOpen, setCardOpen] = useState(true);
-  const [content, setContent] = useState(props.data.content);
-  const [header, setHeader] = useState(props.data.header);
+  const [content, setcontent] = useState("");
+  const [header, setheader] = useState("");
 
   return (
-    <div
-      class="p-2 bg-gray-100 m-2 hover:shadow-md transition-all"
-      // onMouseEnter={() =>
-      //   props.cardClicked(props.data.startIdx, props.data.endIdx)
-      // }
-    >
+    <div class="p-1 bg-gray-100 hover:shadow-md transition-all">
       <div>
         <div class="flex justify-between">
           {/* Eye (scroll to code) */}
@@ -129,7 +124,8 @@ export const Card = (props) => {
           }}
           placeholder="# Header"
           value={header}
-          onChange={(e) => setHeader(e.value)}
+          onChange={setheader}
+          // onChange={(e) => props.cardUpdated("h1", props.idx, e.value)}
           onSave={(e) => props.cardUpdated("h1", props.idx, e.value)}
         />
 
@@ -138,7 +134,7 @@ export const Card = (props) => {
             name="content"
             placeholder="Content"
             value={content}
-            onChange={(e) => setContent(e.value)}
+            onChange={setcontent}
             onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
           />
           <blockquote

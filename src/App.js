@@ -99,7 +99,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div class="container mx-auto flex flex-row">
+      <div class="container mx-auto flex flex-row h-screen">
         <div class="flex-col flex-grow w-3/4 m-2 h-3/4">
           <div class="container mx-auto">
             <CodeTextbox
@@ -124,7 +124,7 @@ class App extends React.Component {
             </button>
           </div>
         </div>
-        <div class="w-1/4 flex-shrink m-2">
+        <div class="w-1/4 flex-shrink m-2 h-3/4">
           <CardList
             cards={this.state.cards}
             cardClicked={(startIdx, endIdx) =>

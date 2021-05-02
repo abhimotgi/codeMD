@@ -62,7 +62,7 @@ export const Card = (props) => {
   const [header, setheader] = useState("");
 
   return (
-    <div class="p-1 bg-gray-100 hover:shadow-md transition-all">
+    <div class="p-3  bg-gray-50 hover:shadow-md transition-all rounded-lg">
       <div>
         <div class="flex justify-between">
           {/* Eye (scroll to code) */}
@@ -136,6 +136,9 @@ export const Card = (props) => {
             value={content}
             onChange={setcontent}
             onSave={(e) => props.cardUpdated("content", props.idx, e.value)}
+            style={{
+              fontSize: "11pt",
+            }}
           />
           <blockquote
             class="font-mono text-xs whitespace-pre-wrap bg-gray-200 hover:bg-gray-300 cursor-pointer"

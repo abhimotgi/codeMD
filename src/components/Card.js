@@ -1,60 +1,7 @@
 import { useState } from "react";
 import { EditText, EditTextarea } from "react-edit-text";
-
-const CardMenuButton = (props) => {
-  return (
-    <div class="cursor-pointer" onClick={props.onClick}>
-      {props.children}
-    </div>
-  );
-};
-
-// Two states for collapsed and expanded
-const CollapseButton = (props) => {
-  return (
-    <div class="cursor-pointer" onClick={() => props.collapse(!props.cardOpen)}>
-      {
-        /* Collapsed state: show down arrow*/
-        !props.cardOpen && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
-            />
-          </svg>
-        )
-      }
-
-      {
-        /* Expanded state: show up arrow */
-        props.cardOpen && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 11l7-7 7 7M5 19l7-7 7 7"
-            />
-          </svg>
-        )
-      }
-    </div>
-  );
-};
+import { CardMenuButton } from "./CardMenuButton";
+import { CollapseButton } from "./CollapseButton";
 
 export const Card = (props) => {
   const [cardOpen, setCardOpen] = useState(true);
@@ -62,7 +9,7 @@ export const Card = (props) => {
   const [header, setheader] = useState("");
 
   return (
-    <div class="p-3  bg-gray-50 hover:shadow-md transition-all rounded-lg">
+    <div class="p-3 bg-white hover:shadow-md transition-all rounded-sm">
       <div>
         <div class="flex justify-between">
           {/* Eye (scroll to code) */}
@@ -76,12 +23,12 @@ export const Card = (props) => {
               className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="gray"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={3}
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
@@ -103,7 +50,7 @@ export const Card = (props) => {
               className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="gray"
             >
               <path
                 strokeLinecap="round"
@@ -141,7 +88,7 @@ export const Card = (props) => {
             }}
           />
           <blockquote
-            class="font-mono text-xs whitespace-pre-wrap bg-gray-200 hover:bg-gray-300 cursor-pointer"
+            class="font-mono text-xs overflow-auto whitespace-pre-wrap bg-gray-100 hover:bg-red-200 active:bg-red-300 cursor-pointer"
             onClick={() =>
               props.cardClicked(props.data.startIdx, props.data.endIdx)
             }

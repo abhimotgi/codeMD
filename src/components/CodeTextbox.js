@@ -16,7 +16,7 @@ export const CodeTextbox = (props) => {
   return (
     <div>
       <textarea
-        class="font-mono text-sm w-full bg-gray-100 m-2 p-2  focus:outline-none"
+        class="font-mono text-sm w-full m-2 p-2  focus:outline-none"
         ref={textAreaRef}
         rows="30"
         placeholder="Paste your code..."

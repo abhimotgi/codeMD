@@ -7,7 +7,11 @@ export const CardList = (props) => {
     <DragDropContext onDragEnd={props.cardDragged}>
       <Droppable droppableId="droppable">
         {(provided, snapshot) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            class="overflow-auto h-full"
+          >
             {props.cards.map((card, index) => (
               <Draggable
                 key={card.cardKey}

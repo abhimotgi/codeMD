@@ -11,8 +11,12 @@ pre {
 }
 
 ::selection {
-  background: #ffb7b7; /* WebKit/Blink Browsers */
+  background: #f4a8a8; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: #ffb7b7; /* Gecko Browsers */
+  background: #f4a8a8; /* Gecko Browsers */
+}
+
+._1EEDX {
+  outline-color: #4b4b4b;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { CodeTextbox } from "./components/CodeTextbox";
 import { CardList } from "./components/CardList";
+import { Button } from "./components/Button";
 
 class App extends React.Component {
   constructor(props) {
@@ -97,45 +98,54 @@ class App extends React.Component {
     this.setState({ cards });
   };
 
+  generateMarkdown = () => {
+    let myString = "";
+    myString += this.state.cards
+      .map((card) => {
+        return `# ${card.header}\n${card.content}\n\`\`\`\n${card.codeBlock}\n\`\`\`\n`;
+      })
+      .join("");
+    console.log(myString);
+  };
+
   render() {
     return (
-      <div class="container mx-auto flex flex-row">
-        <div class="flex-col flex-grow w-3/4 m-2 h-3/4">
-          <div class="container mx-auto">
-            <CodeTextbox
-              startIdx={this.state.startIdx}
-              endIdx={this.state.endIdx}
-              updateVars={(event) => this.updateTextboxVars(event)}
-              clickSwitch={this.state.clickSwitch}
-            ></CodeTextbox>
+      <div class="bg-gray-100">
+        <div class="container mx-auto flex flex-row h-screen ">
+          <div class="flex-col flex-grow w-3/4 m-2 h-3/4">
+            <div class="container mx-auto">
+              <CodeTextbox
+                startIdx={this.state.startIdx}
+                endIdx={this.state.endIdx}
+                updateVars={(event) => this.updateTextboxVars(event)}
+                clickSwitch={this.state.clickSwitch}
+              ></CodeTextbox>
+            </div>
+            <div class="flex flex-row">
+              <Button color="gray" onClick={this.addCard} icon="add">
+                Add comment
+              </Button>
+              <Button
+                color="gray"
+                icon="clear"
+                onClick={() => this.setState({ cards: [] })}
+              >
+                Clear cards
+              </Button>
+              <Button color="gray" icon="code" onClick={this.generateMarkdown}>
+                Generate markdown
+              </Button>
+            </div>
           </div>
-          <div class="flex flex-row">
-            <button
-              class="bg-green-500 text-white p-2 m-2 rounded-md"
-              onClick={this.addCard}
-            >
-              Add comment
-            </button>
-            <button
-              class="bg-gray-800 text-white p-2 m-2 rounded-md"
-              onClick={() => this.setState({ cards: [] })}
-            >
-              Clear cards
-            </button>
+          <div class="w-1/4 flex-shrink m-2 h-3/4">
+            <CardList
+              cards={this.state.cards}
+              cardClicked={this.setSelection}
+              cardUpdated={this.updateCard}
+              cardDeleted={this.deleteCard}
+              cardDragged={this.cardDragged}
+            ></CardList>
           </div>
-        </div>
-        <div class="w-1/4 flex-shrink m-2">
-          <CardList
-            cards={this.state.cards}
-            cardClicked={(startIdx, endIdx) =>
-              this.setSelection(startIdx, endIdx)
-            }
-            cardUpdated={(element, idx, value) =>
-              this.updateCard(element, idx, value)
-            }
-            cardDeleted={(idx) => this.deleteCard(idx)}
-            cardDragged={this.cardDragged}
-          ></CardList>
         </div>
       </div>
     );
